@@ -3,8 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="post_style.css">
+    <link rel="stylesheet" href="all_style.css">
+
 </head>
 <body>
+<div class="full_post"></div>
+<div class="comments">
+    <div class="comments4"></div>
+    <div class="comments1"></div>
+</div>
 
+
+
+<script>
+    const postId = new URL(location.href).searchParams.get('postId')
+    const postIdNumber = JSON.parse(postId)
+    const userId = new URL(location.href).searchParams.get('userId')
+    // const userIdNumber = JSON.parse(userId)
+
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
+        .then((res) => res.json())
+        .then((posts) => {
+            const full_post = document.getElementsByClassName('full_post')[0]
+            const post  = posts.filter((post) => post.id === postIdNumber);
+            const postArr = post[0]
+
+                for (const postElement in postArr) {
+                    const div = document.createElement('div')
+                    div.innerHTML = `<b>${postElement}</b>: ${postArr[postElement]}`
+                    full_post.appendChild(div)
+                }
+        }
+        )
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+    .then((res) => res.json())
+    .then((comments) => {
+        const comes = document.getElementsByClassName('comments')[0]
+        for (const comment of comments) {
+            const comments4 = document.getElementsByClassName('comments4')[0]
+            const comments1 = document.getElementsByClassName('comments1')[0]
+            const box = document.createElement('div')
+
+            box.innerHTML = `<b>postId:</b> ${comment.postId} <br> <b>id:</b> ${comment.id}<br> <b>name:</b> ${comment.name} <br><b>email:</b> ${comment.email} <br><b>body:</b> ${comment.body}`
+
+            if (comments.indexOf(comment) > 0) {
+                comments4.appendChild(box)
+
+            } else {comments1.appendChild(box)
+                }
+
+            comes.appendChild(comments4)
+            comes.appendChild(comments1)
+
+        }
+    } )
+</script>
 </body>
 </html>

@@ -1,0 +1,40 @@
+body {
+    background-color: #404046FF;
+    margin: 10px;
+}
+
+.full_post {
+    background-color: #AFAFAFFF;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 7px;
+
+}
+.comments {
+    background-color: #AFAFAFFF;
+    margin: 12px 5px;
+    border-radius: 3px;
+    padding: 5px;
+}
+.comments > div {
+    margin: 3px;
+    padding: 5px;
+    border-radius: 3px;
+}
+.comments4 {
+    display: flex;
+
+}
+.comments4 > div {
+    background-color: #dadada;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 3px;
+
+}
+
+.comments1 > div {
+    background-color: #dadada;
+    border-radius: 3px;
+
+}
